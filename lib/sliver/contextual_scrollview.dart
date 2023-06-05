@@ -368,6 +368,7 @@ class _InheritedNestedScrollView extends InheritedWidget {
 
 class _NestedScrollMetrics extends FixedScrollMetrics {
   _NestedScrollMetrics({
+    required double devicePixelRatio,
     required double minScrollExtent,
     required double maxScrollExtent,
     required double pixels,
@@ -377,6 +378,7 @@ class _NestedScrollMetrics extends FixedScrollMetrics {
     required this.maxRange,
     required this.correctionOffset,
   }) : super(
+          devicePixelRatio: devicePixelRatio,
           minScrollExtent: minScrollExtent,
           maxScrollExtent: maxScrollExtent,
           pixels: pixels,
@@ -386,6 +388,7 @@ class _NestedScrollMetrics extends FixedScrollMetrics {
 
   @override
   _NestedScrollMetrics copyWith({
+    double? devicePixelRatio,
     double? minScrollExtent,
     double? maxScrollExtent,
     double? pixels,
@@ -396,6 +399,7 @@ class _NestedScrollMetrics extends FixedScrollMetrics {
     double? correctionOffset,
   }) {
     return _NestedScrollMetrics(
+      devicePixelRatio: devicePixelRatio ?? this.devicePixelRatio,
       minScrollExtent: minScrollExtent ?? this.minScrollExtent,
       maxScrollExtent: maxScrollExtent ?? this.maxScrollExtent,
       pixels: pixels ?? this.pixels,
@@ -657,6 +661,7 @@ class _NestedScrollCoordinator
       }
     }
     return _NestedScrollMetrics(
+      devicePixelRatio: 1,
       minScrollExtent: _outerPosition!.minScrollExtent,
       maxScrollExtent: _outerPosition!.maxScrollExtent +
           innerPosition.maxScrollExtent -
