@@ -211,12 +211,12 @@ class _ContextualAppBarState<T> extends State<ContextualAppBar> {
     IconThemeData actionsIconTheme = widget.actionsIconTheme ??
         appBarTheme.actionsIconTheme ??
         overallIconTheme;
-    TextStyle? centerStyle = widget.textTheme?.headline6 ??
-        appBarTheme.textTheme?.headline6 ??
-        theme.primaryTextTheme.headline6;
-    TextStyle? sideStyle = widget.textTheme?.bodyText2 ??
-        appBarTheme.textTheme?.bodyText2 ??
-        theme.primaryTextTheme.bodyText2;
+    TextStyle? centerStyle = widget.textTheme?.titleLarge ??
+        appBarTheme.titleTextStyle ??
+        theme.primaryTextTheme.titleLarge;
+    TextStyle? sideStyle = widget.textTheme?.bodyMedium ??
+        appBarTheme.titleTextStyle ??
+        theme.primaryTextTheme.bodyMedium;
 
     if (widget.toolbarOpacity != 1.0) {
       final double opacity =
@@ -341,8 +341,8 @@ class _ContextualAppBarState<T> extends State<ContextualAppBar> {
       );
     }
     final Brightness brightness = widget.brightness ??
-        appBarTheme.brightness ??
-        theme.primaryColorBrightness;
+        appBarTheme.systemOverlayStyle?.statusBarBrightness ??
+        theme.brightness;
     final SystemUiOverlayStyle overlayStyle = brightness == Brightness.dark
         ? SystemUiOverlayStyle.light
         : SystemUiOverlayStyle.dark;
@@ -352,8 +352,9 @@ class _ContextualAppBarState<T> extends State<ContextualAppBar> {
       child: AnnotatedRegion<SystemUiOverlayStyle>(
         value: overlayStyle,
         child: Material(
-          color:
-              widget.backgroundColor ?? appBarTheme.color ?? theme.primaryColor,
+          color: widget.backgroundColor ??
+              appBarTheme.backgroundColor ??
+              theme.primaryColor,
           elevation:
               widget.elevation ?? appBarTheme.elevation ?? _defaultElevation,
           shape: widget.shape,
